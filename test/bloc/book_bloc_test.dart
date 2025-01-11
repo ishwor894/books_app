@@ -3,6 +3,7 @@ import 'package:books_app/bloc/book_bloc.dart';
 import 'package:books_app/bloc/book_event.dart';
 import 'package:books_app/bloc/book_state.dart';
 import 'package:books_app/models/book_model.dart';
+import 'package:books_app/models/wishlist_model.dart';
 import 'package:books_app/services/http_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -73,9 +74,14 @@ void main() {
     blocTest<BookBloc, BookState>(
       'emits state with updated wishlist when a book is added',
       build: () => bookBloc,
-      act: (bloc) => bloc.add(AddToWishlist(sampleBooks[0])),
+      act: (bloc) => bloc.add(AddToWishlist(Wishlist(
+          title: sampleBooks[0].title, authorName: sampleBooks[0].authorName))),
       expect: () => [
-        BookState.initial().copyWith(wishlist: [sampleBooks[0]]),
+        BookState.initial().copyWith(wishlist: [
+          Wishlist(
+              title: sampleBooks[0].title,
+              authorName: sampleBooks[0].authorName)
+        ]),
       ],
     );
   });
@@ -85,9 +91,14 @@ void main() {
       'emits state with updated wishlist when a book is removed',
       build: () {
         return BookBloc(bookService: mockBookService)
-          ..emit(BookState.initial().copyWith(wishlist: [sampleBooks[0]]));
+          ..emit(BookState.initial().copyWith(wishlist: [
+            Wishlist(
+                title: sampleBooks[0].title,
+                authorName: sampleBooks[0].authorName)
+          ]));
       },
-      act: (bloc) => bloc.add(RemoveFromWishlist(sampleBooks[0])),
+      act: (bloc) => bloc.add(RemoveFromWishlist(Wishlist(
+          title: sampleBooks[0].title, authorName: sampleBooks[0].authorName))),
       expect: () => [
         BookState.initial().copyWith(wishlist: []),
       ],

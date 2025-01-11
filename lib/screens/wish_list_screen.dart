@@ -1,17 +1,19 @@
 import 'package:books_app/bloc/book_bloc.dart';
 import 'package:books_app/bloc/book_event.dart';
 import 'package:books_app/bloc/book_state.dart';
-import 'package:books_app/models/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'book_details.dart';
+class WishlistScreen extends StatefulWidget {
+  const WishlistScreen({
+    super.key,
+  });
 
-class WishlistScreen extends StatelessWidget {
-  final List<Doc> wishlist;
+  @override
+  State<WishlistScreen> createState() => _WishlistScreenState();
+}
 
-  const WishlistScreen({super.key, required this.wishlist});
-
+class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,15 +39,7 @@ class WishlistScreen extends StatelessWidget {
                           vertical: 10,
                           horizontal: 16,
                         ),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => BookDetailsScreen(
-                                book: book,
-                              ),
-                            ),
-                          );
-                        },
+                        onTap: () {},
                         title: Text(
                           book.title,
                           style: const TextStyle(
@@ -108,7 +102,8 @@ class WishlistScreen extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Explore Books'),
+            child: const Text('Explore Books',
+                style: TextStyle(color: Color(0xFF0046A0), fontSize: 16)),
           ),
         ],
       ),

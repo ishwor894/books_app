@@ -1,6 +1,7 @@
 import 'package:books_app/bloc/book_bloc.dart';
 import 'package:books_app/bloc/book_event.dart';
 import 'package:books_app/bloc/book_state.dart';
+import 'package:books_app/models/wishlist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/book_model.dart';
@@ -37,7 +38,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.indigo.withOpacity(0.1),
+                    color: Colors.indigo,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding: const EdgeInsets.all(16),
@@ -49,6 +50,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                         style: const TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -56,7 +58,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                         'By ${widget.book.authorName?.join(", ") ?? "Unknown"}',
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Colors.black54,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -99,23 +101,34 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    icon: state.wishlist.contains(widget.book)
+                    icon: state.wishlist.contains(Wishlist(
+                            title: widget.book.title,
+                            authorName: widget.book.authorName))
                         ? const Icon(Icons.favorite, color: Colors.red)
                         : const Icon(Icons.favorite_border,
                             color: Colors.white),
                     label: Text(
-                      state.wishlist.contains(widget.book)
+                      state.wishlist.contains(Wishlist(
+                              title: widget.book.title,
+                              authorName: widget.book.authorName))
                           ? 'Remove from Wishlist'
                           : 'Add to Wishlist',
+                      style: const TextStyle(color: Color(0xFF0046A0)),
                     ),
                     onPressed: () {
-                      if (state.wishlist.contains(widget.book)) {
-                        BlocProvider.of<BookBloc>(context)
-                            .add(RemoveFromWishlist(widget.book));
+                      if (state.wishlist.contains(Wishlist(
+                          title: widget.book.title,
+                          authorName: widget.book.authorName))) {
+                        BlocProvider.of<BookBloc>(context).add(
+                            RemoveFromWishlist(Wishlist(
+                                title: widget.book.title,
+                                authorName: widget.book.authorName)));
                         _showSnackBar(context, 'Book removed from wishlist!');
                       } else {
-                        BlocProvider.of<BookBloc>(context)
-                            .add(AddToWishlist(widget.book));
+                        BlocProvider.of<BookBloc>(context).add(AddToWishlist(
+                            Wishlist(
+                                title: widget.book.title,
+                                authorName: widget.book.authorName)));
                         _showSnackBar(context, 'Book added to wishlist!');
                       }
                     },

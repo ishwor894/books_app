@@ -1,8 +1,4 @@
-import 'dart:convert';
 
-BookModel bookModelFromJson(String str) => BookModel.fromJson(json.decode(str));
-
-String bookModelToJson(BookModel data) => json.encode(data.toJson());
 
 class BookModel {
   List<Doc> docs;
