@@ -24,7 +24,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
     return BlocBuilder<BookBloc, BookState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: Colors.grey.shade300,
           appBar: AppBar(
             title: Text(
               widget.book.title,

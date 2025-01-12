@@ -17,10 +17,10 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         title: const Text('My Wishlist'),
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: Colors.grey.shade300,
       ),
       body: BlocBuilder<BookBloc, BookState>(
         builder: (context, state) {

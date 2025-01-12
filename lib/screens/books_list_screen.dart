@@ -26,9 +26,9 @@ class _BooksListScreenState extends State<BooksListScreen> {
     return BlocBuilder<BookBloc, BookState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: Colors.grey.shade300,
           appBar: AppBar(
-            backgroundColor: Colors.grey.shade100,
+            backgroundColor: Colors.grey.shade300,
             title: const Text('Books'),
             actions: [
               IconButton(
@@ -78,6 +78,7 @@ class _BooksListScreenState extends State<BooksListScreen> {
                                 title: Text(
                                   book.title,
                                   style: const TextStyle(
+                                    color: Color(0xFF0046A0),
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -87,7 +88,7 @@ class _BooksListScreenState extends State<BooksListScreen> {
                                   book.authorName?.join(", ") ??
                                       "Unknown Author",
                                   style: const TextStyle(
-                                    color: Colors.black54,
+                                    color: Colors.black,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
