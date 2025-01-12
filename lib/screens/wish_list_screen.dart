@@ -17,7 +17,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Wishlist')),
+      backgroundColor: Colors.grey.shade100,
+      appBar: AppBar(
+        title: const Text('My Wishlist'),
+        backgroundColor: Colors.grey.shade100,
+      ),
       body: BlocBuilder<BookBloc, BookState>(
         builder: (context, state) {
           final currentWishlist = state.wishlist;

@@ -26,7 +26,9 @@ class _BooksListScreenState extends State<BooksListScreen> {
     return BlocBuilder<BookBloc, BookState>(
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: Colors.grey.shade100,
           appBar: AppBar(
+            backgroundColor: Colors.grey.shade100,
             title: const Text('Books'),
             actions: [
               IconButton(
@@ -76,6 +78,7 @@ class _BooksListScreenState extends State<BooksListScreen> {
                                 title: Text(
                                   book.title,
                                   style: const TextStyle(
+                                    overflow: TextOverflow.ellipsis,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -83,7 +86,10 @@ class _BooksListScreenState extends State<BooksListScreen> {
                                 subtitle: Text(
                                   book.authorName?.join(", ") ??
                                       "Unknown Author",
-                                  style: const TextStyle(color: Colors.black54),
+                                  style: const TextStyle(
+                                    color: Colors.black54,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                                 trailing: IconButton(
                                   icon: state.wishlist.contains(Wishlist(

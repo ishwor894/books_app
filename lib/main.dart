@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       create: (context) =>
           BookBloc(bookService: bookService), // Injecting the service.
       child: MaterialApp(
-        theme: ThemeData(primaryColor: const Color(0xFF0046A0)),
+        theme: ThemeData(primaryColor: const Color(0xFF0046A0),),
         debugShowCheckedModeBanner: false,
         home: const LoginScreen(),
       ),
